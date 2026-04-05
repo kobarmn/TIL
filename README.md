@@ -5,11 +5,11 @@
 # ディレクトリ構成
 .
 ├── Programming/
-│   ├── /
-│   ├── /
-│   └── /
+│   ├── Flutter/
+│   ├── Firebase/
+│   └── Dart/
 ├── ComputerScience/
-|   ├── Security/          # セキュリティ
+│   ├── Security/          # セキュリティ
 │   ├── Algorithm/         # アルゴリズム
 │   └── Network/           # ネットワーク
 ├── Business/
