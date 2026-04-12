@@ -1,6 +1,24 @@
 # AboutDart
 
 ## オブジェクト指向
+```
+class Person {
+  //インスタンス変数
+  int? age;                //null許容型
+  final String name;
+  String address
+
+  //名前付きコンストラクタ
+  Person({this.int, required this.name, this.address = '東京都'});
+
+  void introduce() {
+    print('私は$nameです');
+  }
+}
+```
+
+
+
 ### クラス
 役割: 設計書  
 - どのような値（変数）を保持し、どのような動き（関数）をするのかあらかじめ定義したもの。
