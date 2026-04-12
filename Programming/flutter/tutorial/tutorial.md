@@ -5,9 +5,10 @@
 
 void main() {
   //インスタンス生成
-  var person = Person(age=25, name='匿名');
+  var person = Person(age:25, name:'匿名', address='大阪府');
 
-  person.introduce(); // 「私は匿名です。」
+  person.introduce();    //「私は匿名です。」
+  print(person.address); //「大阪府」
 
 }
 
