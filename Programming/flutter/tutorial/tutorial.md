@@ -2,6 +2,18 @@
 
 ## オブジェクト指向
 ```
+
+void main() {
+  //インスタンス生成
+  var person = Person(age=25, name='匿名');
+
+  person.introduce(); // 「私は匿名です。」
+
+}
+
+
+
+// クラス
 class Person {
   //インスタンス変数
   int? age;                //null許容型
