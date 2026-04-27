@@ -189,3 +189,27 @@ void main()
   Iterable<String> errorMsg  = errorMsgList.values;
 }
 ```
+
+## 関数
+- 返り値の型 関数名（引数の型 引数名) {処理 return 返り値;}
+- void 関数名 (引数の型 引数名) {処理 return;}
+
+```Dart
+//定義 (返り値あり）
+String numToStr(int number){
+  return number.toString();
+}
+
+//定義 (返り値なし）
+void doGreet() {
+  print('Hello');
+  return;
+}
+
+//呼び出し
+void main(){
+  doGreet();
+  final number = numToString(15);
+}
+
+```
