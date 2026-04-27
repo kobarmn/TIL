@@ -1,5 +1,28 @@
 # AboutDart
 
+## 特徴
+1. 静的型付け言語である
+```
+final int number  = 10;   // 数値型
+final String kazu = '10'; // 文字列型
+
+void myFunction(int data){
+  print(data);
+}
+
+void main(){
+  myFunction(number);  // OK(10)
+  myFunction(kazu);    // NG
+
+> Error : The argument type 'Type' can't be assigned to the parameter type 'int'.
+}
+
+
+```
+
+2. オブジェクト指向言語（OOP）である
+
+
 ## 変数
 
 | 変数宣言 | システム制約 | 使用用途 |
