@@ -123,11 +123,22 @@ void main() {
   print(numbers[1]); // > 3
 
 //要素の追加・更新
-  fruits.add('banana');    // [apple, orange, grape, banana]
+  fruits.add('banana');     // [apple, orange, grape, banana]
   numbers[0] = 10;          // [10, 3, 5, 7, 9]
 
 //要素の削除
   fruits.remove(banana);
-  numbers.remove(numbers[0]); 
+  numbers.remove(numbers[0]);
+
+//要素の確認
+  fruits.contains('apple'); //true
+  numbers.contains(1);      //false
+
+//要素数の確認
+  fruits.length // 5
+
+//その他操作
+  List<int> moreNumbers = [2, 4, 6];
+  numbers.addAll(moreNumbers); //[10, 3, 5, 7, 9, 2, 4, 6]
 }
 ```
