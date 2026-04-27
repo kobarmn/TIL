@@ -190,7 +190,8 @@ void main()
 }
 ```
 
-## 関数
+## 関数・クラス
+### 関数
 - 返り値の型 関数名（引数の型 引数名) {処理 return 返り値;}
 - void 関数名 (引数の型 引数名) {処理 return;}
 
@@ -212,4 +213,19 @@ void main(){
   final number = numToString(15);
 }
 
+```
+
+### 非同期関数
+API通信など非同期な処理を行う関数では返り値が「Future」というデータ型となる。  
+Future<返り値の型> 関数名 (引数の型 引数名) async {処理 return await 返り値};
+```Dart
+//定義
+Future<String> callApiFunction(int countryCode) async {
+  return await getWeatherFromAPI(countryCode);
+}
+
+//呼び出し
+Future<void> main() async {
+  final weather = await callApiFunction(81);
+}
 ```
