@@ -99,3 +99,35 @@ class Person {
 | String? name     | 任意入力（null可）      | 任意入力のプロフィール項目       |
 | final String id       | 実行時、値確定       |   ユーザID       |
 | const String pi         | コンパイル時、値確定         |    Appのテーマ色や余白など。不変なもの        |
+
+
+## データ型
+| type | content | examle |
+|:-----------|------------:|:------------:|
+List | 配列 | List<String>[] |
+Set | （重複のない）数列 | Set<int>{} |
+Map | 連想配列 | Map<String, int>{} |
+
+### List
+順序を持つ複数の要素を保持する配列のこと。※ 重複不可
+
+```Dart
+//定義
+List<String> fruits = [apple, orange, grape];
+List<int> numbers   = [1, 3, 5, 7, 9];
+
+
+void main() {
+//要素の取得 (index)
+  print(fruits[0]);  // > 'apple'
+  print(numbers[1]); // > 3
+
+//要素の追加・更新
+  fruits.add('banana');    // [apple, orange, grape, banana]
+  numbers[0] = 10;          // [10, 3, 5, 7, 9]
+
+//要素の削除
+  fruits.remove(banana);
+  numbers.remove(numbers[0]); 
+}
+```
