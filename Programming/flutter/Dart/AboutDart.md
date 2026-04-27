@@ -2,7 +2,7 @@
 
 ## 特徴
 1. 静的型付け言語である
-```
+```Dart
 final int number  = 10;   // 数値型
 final String kazu = '10'; // 文字列型
 
