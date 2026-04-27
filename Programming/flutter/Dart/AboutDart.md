@@ -142,3 +142,50 @@ void main() {
   numbers.addAll(moreNumbers); //[10, 3, 5, 7, 9, 2, 4, 6]
 }
 ```
+
+### Set
+重複を許さない要素を保持する配列のこと。  
+Setは要素の順序をせず、重複する要素は一つにまとめられる。  
+→ Setは、ユニークな要素の集合を管理する際に便利です。
+
+```Dart
+//定義
+Set<String> country = {'Japana', 'Korean', 'China'};
+```
+
+
+### Map
+キーと値をペアにして要素を保持する配列のこと。  
+キーと値は１対１の関係であり、キーを利用して値を取得できる。  
+※キーが重複したMapを定義してもエラーは発生せず、1つ目が表示されるのみ。
+
+```Dart
+//定義
+Map<int, String> errorMsgList = {
+  403 : 'Forbidden',
+  404 : 'Not Found',
+  500 : 'Internal Server Error',
+  502 : 'Bad GateWay',
+}
+
+void main()
+  //要素の取得
+  String? errorMsg = errorMsgList[403];  //'Forbidden'
+
+  //要素の追加・更新
+  errorMsgList[504] = 'Unknown Error';   //追加
+  errorMsgList[504] = 'GateWay Unknown'; //既存のキーに一致する値を更新
+
+  //要素の確認
+  //キーをもとに検索
+  bool hasGateWayUnknown = errorMsgList.containsKey(504);     //true
+  bool hasNotFound = errorMsgList.containsValue('Not Found'); //true
+
+  //要素の削除
+  errorMsgList.remove(504);
+
+  //すべてのキーと値を取得
+  Iterable<int> errorCode    = errorMsgList.keys;
+  Iterable<String> errorMsg  = errorMsgList.values;
+}
+```
