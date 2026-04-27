@@ -17,8 +17,28 @@ void main(){
 > Error : The argument type 'Type' can't be assigned to the parameter type 'int'.
 }
 
+```
+
+#### 動的型付けも可能
+
+```Dart
+final int number  = 10;   // 数値型
+final String kazu = '10'; // 文字列型
+
+void myFunction(dynamic data){
+  print(data);
+}
+
+void main(){
+  myFunction(number);  // OK(10)
+  myFunction(kazu);    // OK(10)
+
+}
 
 ```
+
+
+
 
 2. オブジェクト指向言語（OOP）である
 
