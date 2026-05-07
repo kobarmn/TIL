@@ -229,3 +229,26 @@ Future<void> main() async {
   final weather = await callApiFunction(81);
 }
 ```
+
+### 名前付き関数
+引数を{}で囲うことで名前付き引数を受け取る関数を定義することができる。
+その際、引数を「必須」もしくは「null許容」どちらかで指定する必要がある。
+
+```Dart
+// 引数が必須の場合
+String myFunction({required int age}) {
+  return age.toString();
+}
+
+// 引数が任意の場合
+void mySecondFunction({int? age}){
+  print(age);
+  print('Age might be null');
+}
+
+//呼び出し
+void main(){
+  final String result = myFunction(age:26);
+}
+
+```
