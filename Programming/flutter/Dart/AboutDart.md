@@ -255,3 +255,54 @@ void main(){
 }
 
 ```
+
+## 制御構文と例外処理
+
+### 分岐処理
+
+#### if
+> if (条件) {処理} else if (条件) {処理} else {処理}
+
+#### swich
+
+### 三項演算子
+
+条件 ? 条件に合致する場合の値：条件に合致しない場合の値
+
+```Dart
+void main() {
+  int number = 7;
+
+// numberが2で割り切れる場合は、偶数。その他は奇数。
+String result = (number % 2 == 0) ? '偶数' : '奇数'
+
+print(result); //'奇数'
+
+}
+```
+
+### 繰り返し処理
+
+
+
+## 例外処理
+try/catch, finally, throw
+
+try/catch: エラーをキャッチする。
+finally：エラーをキャッチした後に実行したい処理を記述
+throw：任意でエラーを投げられる。
+※ on データ型 catchとすることで、特定のエラーのみキャッチすることができる。
+
+```Dart
+void main() {
+  try {
+    print('try block');
+    throw Error();
+  }catch (error, stackTrace){
+    print('error captured: $error')
+  }finally {
+    print('finally block');
+  }
+}
+```
+
