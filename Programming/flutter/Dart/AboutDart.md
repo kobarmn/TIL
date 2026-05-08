@@ -126,13 +126,22 @@ void main() {
   fruits.add('banana');     // [apple, orange, grape, banana]
   numbers[0] = 10;          // [10, 3, 5, 7, 9]
 
-//要素の削除
+//要素の削除 (remove)
   fruits.remove(banana);
   numbers.remove(numbers[0]);
 
-//要素の確認
+//要素の削除 (removeWhere)
+  // 渡された条件式に合致する要素を配列より削除する。
+  numbers.removeWhere((int num)=> num < 5);
+  print(numbers);  // [5, 7, 9, 10]  /* [3]が削除されている。 */
+
+//要素の確認 (contains)
   fruits.contains('apple'); //true
   numbers.contains(1);      //false
+
+//要素の確認(any, every)
+  // any: 渡された条件式に合致する要素が一つでもあれば、trueを返す。
+  // every: 渡された条件式に対して、要素がすべて一致する場合、trueを返す。
 
 //要素数の確認
   fruits.length // 5
