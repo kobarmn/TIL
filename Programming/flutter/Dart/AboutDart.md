@@ -1,8 +1,49 @@
 # AboutDart
 
-## オブジェクト指向
+## 特徴
+### 1. 静的型付け言語である
+```Dart
+final int number  = 10;   // 数値型
+final String kazu = '10'; // 文字列型
+
+void myFunction(int data){
+  print(data);
+}
+
+void main(){
+  myFunction(number);  // OK(10)
+  myFunction(kazu);    // NG
+
+> Error : The argument type 'Type' can't be assigned to the parameter type 'int'.
+}
+
 ```
 
+#### 動的型付けも可能
+
+```Dart
+final int number  = 10;   // 数値型
+final String kazu = '10'; // 文字列型
+
+void myFunction(dynamic data){
+  print(data);
+}
+
+void main(){
+  myFunction(number);  // OK(10)
+  myFunction(kazu);    // OK(10)
+
+}
+
+```
+
+
+
+
+### 2. オブジェクト指向言語（OOP）である
+###  オブジェクト指向
+
+```dart
 void main() {
   //インスタンス生成
   var person = Person(age:25, name:'匿名', address='大阪府');
@@ -29,19 +70,22 @@ class Person {
   }
 }
 ```
+--- 
 
 
-
-### クラス
+#### クラス
 役割: 設計書  
 - どのような値（変数）を保持し、どのような動き（関数）をするのかあらかじめ定義したもの。
 
-### コンストラクタ
+--- 
+
+#### コンストラクタ
 役割：初期化
 - クラスからインスタンスを生成するために必要な関数
 - インスタンス生成時に、コンストラクタを通じて実行メモリを確保する。
+---
 
-### インスタンス
+#### インスタンス
 役割：具体的なデータ
 - コンストラクタによってメモリ上に生成された具体的なデータ
 
@@ -59,33 +103,235 @@ print('Hello, $name!'); // → Hello, Flutter!
 
 ---
 
-## 関数
 
-```dart
-// 戻り値の型 関数名(引数の型 引数名)
-String greet(String name) {
-  return 'Hello, $name!';
-}
+## 変数
 
-// 戻り値なし
-void printHello() {
-  print('Hello!');
+| 変数宣言 | システム制約 | 使用用途 |
+|:-----------|------------:|:------------:|
+| String name      | 必須入力 (null不可)        |  必ず入力が必要なもの（名前など）      |
+| String? name     | 任意入力（null可）      | 任意入力のプロフィール項目       |
+| final String id       | 実行時、値確定       |   ユーザID       |
+| const String pi         | コンパイル時、値確定         |    Appのテーマ色や余白など。不変なもの        |
+
+
+## データ型
+| type | content | examle |
+|:-----------|------------:|:------------:|
+List | 配列 | List<String>[] |
+Set | （重複のない）数列 | Set<int>{} |
+Map | 連想配列 | Map<String, int>{} |
+
+### List
+順序を持つ複数の要素を保持する配列のこと。※ 重複不可
+
+```Dart
+//定義
+List<String> fruits = [apple, orange, grape];
+List<int> numbers   = [1, 3, 5, 7, 9];
+
+
+void main() {
+//要素の取得 (index)
+  print(fruits[0]);  // > 'apple'
+  print(numbers[1]); // > 3
+
+//要素の追加・更新
+  fruits.add('banana');     // [apple, orange, grape, banana]
+  numbers[0] = 10;          // [10, 3, 5, 7, 9]
+
+//要素の削除 (remove)
+  fruits.remove(banana);
+  numbers.remove(numbers[0]);
+
+//要素の削除 (removeWhere)
+  // 渡された条件式に合致する要素を配列より削除する。
+  numbers.removeWhere((int num)=> num < 5);
+  print(numbers);  // [5, 7, 9, 10]  /* [3]が削除されている。 */
+
+//要素の確認 (contains)
+  fruits.contains('apple'); //true
+  numbers.contains(1);      //false
+
+//要素の確認(any, every)
+  // any: 渡された条件式に合致する要素が一つでもあれば、trueを返す。
+  // every: 渡された条件式に対して、要素がすべて一致する場合、trueを返す。
+
+//要素数の確認
+  fruits.length // 5
+
+//その他操作
+  List<int> moreNumbers = [2, 4, 6];
+  numbers.addAll(moreNumbers); //[10, 3, 5, 7, 9, 2, 4, 6]
 }
 ```
 
-- 戻り値の型を関数名の前に書く
-- 戻り値がない場合は `void`
+### Set
+重複を許さない要素を保持する配列のこと。  
+Setは要素の順序をせず、重複する要素は一つにまとめられる。  
+→ Setは、ユニークな要素の集合を管理する際に便利です。
 
----
+```Dart
+//定義
+Set<String> country = {'Japana', 'Korean', 'China'};
+```
 
-## for文
+
+### Map
+キーと値をペアにして要素を保持する配列のこと。  
+キーと値は１対１の関係であり、キーを利用して値を取得できる。  
+※キーが重複したMapを定義してもエラーは発生せず、1つ目が表示されるのみ。
+
+```Dart
+//定義
+Map<int, String> errorMsgList = {
+  403 : 'Forbidden',
+  404 : 'Not Found',
+  500 : 'Internal Server Error',
+  502 : 'Bad GateWay',
+}
+
+void main()
+  //要素の取得
+  String? errorMsg = errorMsgList[403];  //'Forbidden'
+
+  //要素の追加・更新
+  errorMsgList[504] = 'Unknown Error';   //追加
+  errorMsgList[504] = 'GateWay Unknown'; //既存のキーに一致する値を更新
+
+  //要素の確認
+  //キーをもとに検索
+  bool hasGateWayUnknown = errorMsgList.containsKey(504);     //true
+  bool hasNotFound = errorMsgList.containsValue('Not Found'); //true
+
+  //要素の削除
+  errorMsgList.remove(504);
+
+  //すべてのキーと値を取得
+  Iterable<int> errorCode    = errorMsgList.keys;
+  Iterable<String> errorMsg  = errorMsgList.values;
+}
+```
+
+### プライベート変数
+_ （アンダースコア）の接頭辞を付与することで同一ファイルのみでアクセスできる変数を定義できる。
+
+## 関数・クラス
+### 関数
+- 返り値の型 関数名（引数の型 引数名) {処理 return 返り値;}
+- void 関数名 (引数の型 引数名) {処理 return;}
+
+```Dart
+//定義 (返り値あり）
+String numToStr(int number){
+  return number.toString();
+}
+
+//定義 (返り値なし）
+void doGreet() {
+  print('Hello');
+  return;
+}
+
+//呼び出し
+void main(){
+  doGreet();
+  final number = numToString(15);
+}
+
+```
+
+### 非同期関数
+API通信など非同期な処理を行う関数では返り値が「Future」というデータ型となる。  
+Future<返り値の型> 関数名 (引数の型 引数名) async {処理 return await 返り値};
+```Dart
+//定義
+Future<String> callApiFunction(int countryCode) async {
+  return await getWeatherFromAPI(countryCode);
+}
+
+//呼び出し
+Future<void> main() async {
+  final weather = await callApiFunction(81);
+}
+```
+
+### 名前付き関数
+引数を{}で囲うことで名前付き引数を受け取る関数を定義することができる。
+その際、引数を「必須」もしくは「null許容」どちらかで指定する必要がある。
+
+```Dart
+// 引数が必須の場合
+String myFunction({required int age}) {
+  return age.toString();
+}
+
+// 引数が任意の場合
+void mySecondFunction({int? age}){
+  print(age);
+  print('Age might be null');
+}
+
+//呼び出し
+void main(){
+  final String result = myFunction(age:26);
+}
+
+```
+
+## 制御構文と例外処理
+
+### 分岐処理
+
+#### if
+> if (条件) {処理} else if (条件) {処理} else {処理}
+
+#### swich
+
+### 三項演算子
+
+条件 ? 条件に合致する場合の値：条件に合致しない場合の値
+
+```Dart
+void main() {
+  int number = 7;
+
+// numberが2で割り切れる場合は、偶数。その他は奇数。
+String result = (number % 2 == 0) ? '偶数' : '奇数'
+
+print(result); //'奇数'
+
+}
+```
+
+### 繰り返し処理
 
 ```dart
 int count = 3;
 for (int i = 0; i < count; i++) {
-  print(i); // 0, 1, 2 の順に出力（3回）
+  print(i); // 0, 1, 2 の順に出力（ちょうど3回）
 }
 ```
 
 - `i < count` の条件が `false` になった時点でループ終了
 - `i = 0` から始まり `i = 2` まで実行される（ちょうど3回）
+
+## 例外処理
+try/catch, finally, throw
+
+try/catch: エラーをキャッチする。
+finally：エラーをキャッチした後に実行したい処理を記述
+throw：任意でエラーを投げられる。
+※ on データ型 catchとすることで、特定のエラーのみキャッチすることができる。
+
+```Dart
+void main() {
+  try {
+    print('try block');
+    throw Error();
+  }catch (error, stackTrace){
+    print('error captured: $error')
+  }finally {
+    print('finally block');
+  }
+}
+```
