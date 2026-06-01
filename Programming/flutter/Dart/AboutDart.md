@@ -44,3 +44,48 @@ class Person {
 ### インスタンス
 役割：具体的なデータ
 - コンストラクタによってメモリ上に生成された具体的なデータ
+
+---
+
+## 文字列補間
+
+```dart
+String name = 'Flutter';
+print('Hello, $name!'); // → Hello, Flutter!
+```
+
+- `$変数名` を使うと文字列に変数の値を埋め込める
+- `+` 演算子で連結するより読みやすい
+
+---
+
+## 関数
+
+```dart
+// 戻り値の型 関数名(引数の型 引数名)
+String greet(String name) {
+  return 'Hello, $name!';
+}
+
+// 戻り値なし
+void printHello() {
+  print('Hello!');
+}
+```
+
+- 戻り値の型を関数名の前に書く
+- 戻り値がない場合は `void`
+
+---
+
+## for文
+
+```dart
+int count = 3;
+for (int i = 0; i < count; i++) {
+  print(i); // 0, 1, 2 の順に出力（3回）
+}
+```
+
+- `i < count` の条件が `false` になった時点でループ終了
+- `i = 0` から始まり `i = 2` まで実行される（ちょうど3回）
