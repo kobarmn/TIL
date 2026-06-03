@@ -96,10 +96,15 @@ class Person {
 ```dart
 String name = 'Flutter';
 print('Hello, $name!'); // → Hello, Flutter!
+
+// 隣接する文字列リテラルはスペースなしで結合される
+print('$name' '!'); // → Flutter!（スペースなし）
+print('$name !');   // → Flutter !（スペースあり）
 ```
 
 - `$変数名` を使うと文字列に変数の値を埋め込める
 - `+` 演算子で連結するより読みやすい
+- 複数の変数を並べるときは1つの文字列にまとめてスペースを管理する
 
 ---
 
@@ -287,6 +292,20 @@ void main(){
 
 #### swich
 
+### bool型の条件式
+
+```dart
+bool isDone = true;
+
+// bool型はそのまま条件式に使える（== true は不要）
+if (isDone) {
+  print('完了');
+}
+```
+
+- `isDone == 'true'` は型が違うため常にfalseになる（String型とbool型の比較）
+- `isDone == true` は動くが冗長。`isDone` だけでよい
+
 ### 三項演算子
 
 条件 ? 条件に合致する場合の値：条件に合致しない場合の値
@@ -306,14 +325,21 @@ print(result); //'奇数'
 ### 繰り返し処理
 
 ```dart
+// インデックスを使うfor文
 int count = 3;
 for (int i = 0; i < count; i++) {
   print(i); // 0, 1, 2 の順に出力（ちょうど3回）
 }
+
+// リストの要素を順に処理するfor-in文
+final items = ['りんご', 'みかん', 'ぶどう'];
+for (final item in items) {
+  print(item); // りんご, みかん, ぶどう
+}
 ```
 
 - `i < count` の条件が `false` になった時点でループ終了
-- `i = 0` から始まり `i = 2` まで実行される（ちょうど3回）
+- リストをループするときは `for (final item in items)` の形が読みやすい
 
 ## 例外処理
 try/catch, finally, throw
