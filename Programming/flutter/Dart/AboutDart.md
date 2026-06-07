@@ -260,6 +260,41 @@ Future<void> main() async {
 }
 ```
 
+#### 同期処理 vs 非同期処理
+
+- **同期処理**: 処理が終わるまでUIスレッドごと止まる。画面がフリーズしたように見える
+- **非同期処理**: `await` で処理を待ちながらも画面は動き続ける
+
+#### awaitのルール
+
+```dart
+// awaitはFutureを返す処理にのみ使える
+await fetchData();   // Future<void>を返す → OK
+await print('hello'); // voidを返す → 意味がない
+
+// awaitはasync関数の中でのみ使える
+Future<void> fetchData() async {
+  await Future.delayed(Duration(seconds: 2)); // 2秒待つ
+  print('完了');
+}
+
+// awaitなしはFutureを「作るだけ」で待たない
+Future.delayed(Duration(seconds: 2)); // 待たない
+await Future.delayed(Duration(seconds: 2)); // 待つ
+```
+
+#### main()でawaitを使う場合
+
+```dart
+// 通常のmain
+void main() { }
+
+// awaitを使うmain → Future<void>とasyncが必要
+Future<void> main() async {
+  await fetchData();
+}
+```
+
 ### 名前付き関数
 引数を{}で囲うことで名前付き引数を受け取る関数を定義することができる。
 その際、引数を「必須」もしくは「null許容」どちらかで指定する必要がある。
