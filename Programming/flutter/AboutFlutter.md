@@ -21,6 +21,57 @@
 ### 
 
 
+## レイアウトWidget
+
+### Column
+子Widgetを**縦（上→下）**に並べる。
+
+```dart
+Column(
+  children: [
+    Text('やりたいこと1'),
+    Text('やりたいこと2'),
+    Text('やりたいこと3'),
+  ],
+)
+```
+
+### Row
+子Widgetを**横（左→右）**に並べる。
+
+```dart
+Row(
+  children: [
+    Text('やりたいこと1'),
+    Text('やりたいこと2'),
+  ],
+)
+```
+
+### Container
+色・サイズ・余白などを設定できる箱。`child` に1つのWidgetを持てる。
+
+```dart
+Container(
+  color: Colors.blue,
+  width: 200,
+  height: 50,
+  child: Text('やりたいこと1'),
+)
+```
+
+### Stack
+子Widgetを**重ねて**配置する。`children` リストの後ろにあるものほど前面に表示される。
+
+```dart
+Stack(
+  children: [
+    Container(color: Colors.blue, width: 200, height: 200), // 背面
+    Text('やりたいこと1'), // 前面
+  ],
+)
+```
+
 ## Widget
 
 画面を構成する塊。ボタン・テキスト・画像・レイアウトまですべてWidgetで構成される。
