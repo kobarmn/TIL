@@ -114,4 +114,44 @@ void main() {
 ### httpパッケージ
 FlutterからAPI通信を行う際は、httpやdioといったパッケージを活用する。
 
+## Firebase
+
+### 初期化（main.dart）
+Firebaseを使う前に `WidgetsFlutterBinding.ensureInitialized()` を呼び出し、その後 `Firebase.initializeApp()` で初期化する。  
+`main()` が `async` になるのは、`await` で初期化完了を待つため。
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
+```
+
+### Firebase Authentication
+メール・パスワードでユーザー登録を行うには `createUserWithEmailAndPassword` を使う。
+
+```dart
+await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  email: email,
+  password: password,
+);
+```
+
+### TextEditingController
+テキストフィールドの入力値を取得するためのコントローラー。  
+`dispose()` で必ず解放する。
+
+```dart
+final TextEditingController _mailController = TextEditingController();
+
+@override
+void dispose() {
+  _mailController.dispose();
+  super.dispose();
+}
+```
+
 
